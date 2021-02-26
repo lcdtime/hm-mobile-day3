@@ -34,13 +34,13 @@
 <script>
 import { mapMutations } from 'vuex'
 // 导入登录模块api
-import { reqLogin, getproInfo } from '@/api/user'
+import { reqLogin, getproInfo, reqGetFollowings } from '@/api/user'
 export default {
   // 组件添加name属性方便后期调试工具中查找
   name: 'Login',
   data () {
     return {
-      mobile: '17360897263',
+      mobile: '17611183627',
       code: '246810',
       errorMobileText: '', // 手机号验证失败的提示文本
       errorCodeText: '' // 验证码验证失败的提示文本
@@ -111,9 +111,15 @@ export default {
         this.$router.push('/')
       }
     },
+    // 测试获取个人信息
     async getinfo () {
       const resinfo = await getproInfo()
       console.log(resinfo)
+    },
+    // 测试关注列表
+    async getFollowings () {
+      const data = await reqGetFollowings()
+      console.log(data)
     }
   }
 }

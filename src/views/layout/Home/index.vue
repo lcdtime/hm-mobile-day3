@@ -1,58 +1,69 @@
 <template>
   <div class="home-container">
-    <van-tabs v-model="active">
-      <van-tab title="标签 1">
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
+    <van-tabs v-model="active" >
+      <van-tab v-for="item in channels" :title="item.name" :key="item.id">
+        <p>1内容</p>
+        <p>2内容</p>
+        <p>3内容</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}</p>
+        <p>内容 {{item.name}}111111111111111</p>
       </van-tab>
-      <van-tab title="标签 2">内容 2</van-tab>
-      <van-tab title="标签 3">内容 3</van-tab>
-      <van-tab title="标签 4">内容 4</van-tab>
-      <van-tab title="标签 5">内容 5</van-tab>
-      <van-tab title="标签 6">内容 6</van-tab>
-      <van-tab title="标签 7">内容 7</van-tab>
-      <van-tab title="标签 8">内容 8</van-tab>
-      <van-tab title="标签 9">内容 9</van-tab>
-      <van-tab title="标签 10">内容 10</van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
+// 导入请求方法
+import { reqGetChannels } from '@/api/channels'
 export default {
   name: 'HomeIndex',
   data () {
     return {
-      active: 0
+      active: 0,
+      channels: []
+    }
+  },
+  // 发送请求获取内容并渲染页面
+  // 初始化视图获取数据
+  created () {
+    this.reqChannels()
+  },
+  methods: {
+    // 用户登陆是两种数据显示效果的，有无请求token本地
+    // 每次请求都携带的有请求头验证
+    async reqChannels () {
+      // 请求失败是由于携带token
+      const { data } = await reqGetChannels()
+      console.log(data.data)
+      // 添加到数据列表
+      this.channels = data.data.channels
     }
   }
+  // 页面初始化完成就渲染页面
 }
 </script>
 
@@ -64,10 +75,18 @@ export default {
 // less中深度选择器 是  /deep/
 // css中的深度选择器 >>>
   .home-container {
+      padding-top: 44px;
+      // padding-bottom: 50px;
     // ::v-deep 开启深度// 深度作用选择器 ::v-deep (sass)  /deep/ (less)  >>> (css)
     ::v-deep {
       .van-tabs__line {
-        background-color: red;
+        background-color: #3296fa;
+      }
+      .van-tabs__wrap {
+        position: fixed;
+        top: 46px;
+        left: 0;
+        width: 100%;
       }
     }
   }

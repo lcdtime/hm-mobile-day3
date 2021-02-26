@@ -24,10 +24,11 @@
     <div>
       <van-tabbar v-model="active" route>
           <!-- replace是替换的意思，在路由中默认路由地址记录会被缓存，添加replace不会进行路由记录缓存 -->
-        <van-tabbar-item to='/' icon="home-o">首页</van-tabbar-item>
-        <van-tabbar-item to='/question' icon="chat-o">问答</van-tabbar-item>
-        <van-tabbar-item to='/video' icon="video-o">视频</van-tabbar-item>
-        <van-tabbar-item to='/user' icon="user-o">我的</van-tabbar-item>
+          <!-- 添加消除替换时 直接回到登陆页面--------？？？？？？？？？？？ -->
+        <van-tabbar-item to='/' replace icon="home-o" >首页</van-tabbar-item>
+        <van-tabbar-item to='/question' replace icon="chat-o" >问答</van-tabbar-item>
+        <van-tabbar-item to='/video' replace icon="video-o" >视频</van-tabbar-item>
+        <van-tabbar-item to='/user' replace icon="user-o" >我的</van-tabbar-item>
       </van-tabbar>
     </div>
   </div>
@@ -53,11 +54,15 @@ export default {
 
 <style lang="scss" scoped>
   .layout-container {
+    // placeholder 固定在底部时，是否在标签位置生成一个等高的占位元素,就可以不用加padding-top了
+    padding-top: 46px;
+    // 底部tabbar 有固定定位会把地下一行内容遮住
+    padding-bottom: 50px;
     // 图片logo
     .logo {
         // @ 在css中不识别 ~@ 才会找到src
     //   background: url('~@/assets/logo.png') no-repeat;
-      background: url('../../assets/logo.png') no-repeat;
+      background: url('~@/assets/logo.png') no-repeat;
       background-size: cover;
       width: 100px;
       height: 30px;

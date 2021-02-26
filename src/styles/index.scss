@@ -1,0 +1,9 @@
+// 将公共头部样式设置在index.scss中, 以后索引的头部样式都是一样的样式
+.van-nav-bar {
+  .van-nav-bar__content {
+    background-color: #3296fa;
+    .van-nav-bar__title {
+      color: #fff;
+    }
+  }
+}

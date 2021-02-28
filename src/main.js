@@ -15,6 +15,9 @@ import 'amfe-flexible'
 // 导入axios实例并挂载给vue原型
 import http from '@/utils/request'
 Vue.prototype.$http = http
+// 全局过滤器
+import { getRelativeTime } from '@/utils/date-time'
+Vue.filter('relative', getRelativeTime)
 Vue.config.productionTip = false
 
 new Vue({
